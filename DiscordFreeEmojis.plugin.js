@@ -2,7 +2,7 @@
  * @name FreeEmojis
  * @version 1.7.1
  * @description Link emojis if you don't have nitro! Type them out or use the emoji picker!
- * @author An0 (Original) & EpicGazel
+ * @author An0 (Original) & EpicGazel 
  * @source https://github.com/EpicGazel/DiscordFreeEmojis
  * @updateUrl https://raw.githubusercontent.com/EpicGazel/DiscordFreeEmojis/master/DiscordFreeEmojis.plugin.js
  */
@@ -188,8 +188,8 @@ return function() { return {
     getName: () => "DiscordFreeEmojis",
     getShortName: () => "FreeEmojis",
     getDescription: () => "Link emojis if you don't have nitro! Type them out or use the emoji picker!",
-    getVersion: () => "1.7",
-    getAuthor: () => "An0",
+    getVersion: () => "1.7.1",
+    getAuthor: () => "An0 (Original) & EpicGazel",
 
     start: Start,
     stop: Stop
