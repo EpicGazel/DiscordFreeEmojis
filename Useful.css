@@ -1,0 +1,40 @@
+/* Misc items to add to Custom CSS for a better experience. Pick and choose as you please.*/
+
+/* Clean up emojis darkened, monotone, lock icon */
+/* Make nitro emojis normal colored and outlined */
+button[class*='emojiItemDisabled'] { 
+    filter: none !important; 
+    outline: dotted 4px rgba(255, 255, 255, 0.46); 
+    outline-offset: -2px; 
+    cursor: pointer !important;
+}
+/* Makes the emoji dark background transparent */ 
+.emojiLockIconContainer_ed2f80 {
+    background: rgba(0,0,0,0) !important;
+    scale: 0.01 !important;
+
+}
+
+/* Makes the emoji lock icon itself too small to see */
+.emojiLockIcon__37643 {
+    width: 0 !important;
+}
+
+
+/* Other misc rules */
+/* Make (normal) text emojis bigger */
+.emoji.jumboable {
+    width:150px;
+    height:150px;
+}
+
+/* Really big emoji/sticker/gif drawer */
+.positionLayer__9999d {
+    height: calc(100vh - 220px);
+}
+
+/* Hide send gift button */
+button[aria-label="Send a gift"] {
+    visibility: hidden;
+    display: none;
+}
