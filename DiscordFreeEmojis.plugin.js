@@ -1,10 +1,10 @@
 /**
  * @name FreeEmojis
- * @version 1.7
+ * @version 1.7.1
  * @description Link emojis if you don't have nitro! Type them out or use the emoji picker!
- * @author An0
- * @source https://github.com/An00nymushun/DiscordFreeEmojis
- * @updateUrl https://raw.githubusercontent.com/An00nymushun/DiscordFreeEmojis/main/DiscordFreeEmojis.plugin.js
+ * @author An0 (Original) & EpicGazel
+ * @source https://github.com/EpicGazel/DiscordFreeEmojis
+ * @updateUrl https://raw.githubusercontent.com/EpicGazel/DiscordFreeEmojis/master/DiscordFreeEmojis.plugin.js
  */
 
 /*@cc_on
@@ -143,7 +143,10 @@ function Start() {
     }
 
     function replaceEmoji(parseResult, emoji) {
-        parseResult.content = parseResult.content.replace(`<${emoji.animated ? "a" : ""}:${emoji.originalName || emoji.name}:${emoji.id}>`, emoji.url.split("?")[0] + "?size=48");
+        const emojiUrl = `https://cdn.discordapp.com/emojis/${emoji.id}.${emoji.animated ? "gif" : "webp"}`;
+		parseResult.content = parseResult.content.replace
+			(`<${emoji.animated ? "a" : ""}:${emoji.originalName || emoji.name}:${emoji.id}>`,
+			 `[᲼](${emojiUrl})`);
     }
 
     parseHook = function() {
