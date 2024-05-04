@@ -4,7 +4,7 @@
  * @description Link emojis if you don't have nitro! Type them out or use the emoji picker!
  * @author An0 (Original) & EpicGazel 
  * @source https://github.com/EpicGazel/DiscordFreeEmojis
- * @updateUrl https://raw.githubusercontent.com/EpicGazel/DiscordFreeEmojis/master/DiscordFreeEmojis.plugin.js
+ * @updateUrl https://raw.githubusercontent.com/EpicGazel/DiscordFreeEmojis/master/DiscordFreeEmojis64px.plugin.js
  */
 
 /*@cc_on
