@@ -1,6 +1,6 @@
 /**
  * @name FreeEmojis
- * @version 1.7.1
+ * @version 1.7.2
  * @description Link emojis if you don't have nitro! Type them out or use the emoji picker!
  * @author An0 (Original) & EpicGazel 
  * @source https://github.com/EpicGazel/DiscordFreeEmojis
@@ -146,7 +146,7 @@ function Start() {
         const emojiUrl = `https://cdn.discordapp.com/emojis/${emoji.id}.${emoji.animated ? "gif" : "webp"}`;
 		parseResult.content = parseResult.content.replace
 			(`<${emoji.animated ? "a" : ""}:${emoji.originalName || emoji.name}:${emoji.id}>`,
-			 `[᲼](${emojiUrl + '?size=64'})`);
+			 `[᲼](${emojiUrl + '?size=64'}) `);
     }
 
     parseHook = function() {
@@ -188,7 +188,7 @@ return function() { return {
     getName: () => "DiscordFreeEmojis",
     getShortName: () => "FreeEmojis",
     getDescription: () => "Link emojis if you don't have nitro! Type them out or use the emoji picker!",
-    getVersion: () => "1.7.1",
+    getVersion: () => "1.7.2",
     getAuthor: () => "An0 (Original) & EpicGazel",
 
     start: Start,
