@@ -154,8 +154,8 @@ function Start() {
         return result;
     }
 
-    function replaceEmoji(parseResult, emoji) {
-        let emojiUrl = `https://cdn.discordapp.com/emojis/${emoji.id}.${emoji.animated ? "gif" : "webp"}${pluginSettings.useNativeEmojiSize.value ? "" : "?size=48"}`;
+    function replaceEmoji(parseResult, emoji, index) {
+        let emojiUrl = `https://cdn.discordapp.com/emojis/${emoji.id}.${emoji.animated ? "gif" : "webp"}?quality=lossless&index=${index}${pluginSettings.useNativeEmojiSize.value ? "" : "&size=48"}`;
 		parseResult.content = parseResult.content.replace
 			(`<${emoji.animated ? "a" : ""}:${emoji.originalName || emoji.name}:${emoji.id}>`,
 			 `[᲼](${emojiUrl}) `);
@@ -163,10 +163,12 @@ function Start() {
 
     parseHook = function() {
         let result = original_parse.apply(this, arguments);
+        let emojisSent = 0;
 
         if(result.invalidEmojis.length !== 0) {
             for(let emoji of result.invalidEmojis) {
-                replaceEmoji(result, emoji);
+                replaceEmoji(result, emoji, emojisSent);
+                emojisSent++;
             }
             result.invalidEmojis = [];
         }
@@ -174,7 +176,8 @@ function Start() {
         for (let i = 0; i < validNonShortcutEmojis.length; i++) {
             const emoji = validNonShortcutEmojis[i];
             if(!emoji.available) {
-                replaceEmoji(result, emoji);
+                replaceEmoji(result, emoji, emojisSent);
+                emojisSent++;
                 validNonShortcutEmojis.splice(i, 1);
                 i--;
             }
