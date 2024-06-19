@@ -32,6 +32,9 @@ var FreeEmojis = (() => {
 
 'use strict';
 
+const { createElement, useState } = BdApi.React;
+const FormSwitch = BdApi.Webpack.getByKeys("FormSwitch").FormSwitch;
+
 const BaseColor = "#0cf";
 
 var Discord;
@@ -92,6 +95,15 @@ var Utils = {
     }
 };
 
+var pluginSettings = {
+    useNativeEmojiSize: {
+        name: "Use native emoji size",
+        note: "Uploads emoji as their native size. Always scales down to 48px, the Discord emoji size, otherwise.",
+        value: true,
+        type: FormSwitch
+    }
+};
+
 var Initialized = false;
 var searchHook;
 var parseHook;
@@ -142,8 +154,8 @@ function Start() {
         return result;
     }
 
-    function replaceEmoji(parseResult, emoji) {
-        const emojiUrl = `https://cdn.discordapp.com/emojis/${emoji.id}.${emoji.animated ? "gif" : "webp"}`;
+    function replaceEmoji(parseResult, emoji, index) {
+        let emojiUrl = `https://cdn.discordapp.com/emojis/${emoji.id}.${emoji.animated ? "gif" : "webp"}?quality=lossless&index=${index}${pluginSettings.useNativeEmojiSize.value ? "" : "&size=48"}`;
 		parseResult.content = parseResult.content.replace
 			(`<${emoji.animated ? "a" : ""}:${emoji.originalName || emoji.name}:${emoji.id}>`,
 			 `[᲼](${emojiUrl}) `);
@@ -151,10 +163,12 @@ function Start() {
 
     parseHook = function() {
         let result = original_parse.apply(this, arguments);
+        let emojisSent = 0;
 
         if(result.invalidEmojis.length !== 0) {
             for(let emoji of result.invalidEmojis) {
-                replaceEmoji(result, emoji);
+                replaceEmoji(result, emoji, emojisSent);
+                emojisSent++;
             }
             result.invalidEmojis = [];
         }
@@ -162,7 +176,8 @@ function Start() {
         for (let i = 0; i < validNonShortcutEmojis.length; i++) {
             const emoji = validNonShortcutEmojis[i];
             if(!emoji.available) {
-                replaceEmoji(result, emoji);
+                replaceEmoji(result, emoji, emojisSent);
+                emojisSent++;
                 validNonShortcutEmojis.splice(i, 1);
                 i--;
             }
@@ -174,6 +189,16 @@ function Start() {
     getEmojiUnavailableReasonHook = function() {
         return null;
     }
+
+    for (let key in pluginSettings) {
+        const loadedSetting = BdApi.Data.load("FreeEmojis", key);
+
+        if (loadedSetting == undefined) {
+            BdApi.Data.save("FreeEmojis", key, pluginSettings[key].value);
+        } else {
+            pluginSettings[key].value = loadedSetting;
+        }
+    }
 }
 
 function Stop() {
@@ -184,6 +209,40 @@ function Stop() {
     getEmojiUnavailableReasonHook = Discord.original_getEmojiUnavailableReason;
 }
 
+function GetSettingsPanel() {
+    const settingsElement = () => {
+
+        const [usePluginSettings, setPluginSettings] = useState(pluginSettings);
+        const handleChange = (key, value) => {
+            let updatedSettings = { ...usePluginSettings };
+            updatedSettings[key].value = value
+            setPluginSettings(updatedSettings);
+            BdApi.Data.save("FreeEmojis", key, value);
+        }
+
+        return Object.keys(pluginSettings).map((key) => {
+            const { type } = pluginSettings[key];
+            let outputElement;
+
+            if (type == FormSwitch) {
+                let { name, note, value } = pluginSettings[key];
+
+                outputElement = createElement(FormSwitch, {
+                    name: name,
+                    children: name,
+                    note: note,
+                    value: value,
+                    onChange: (v) => handleChange(key, v)
+                });
+            }
+
+            return outputElement;
+        });
+    };
+
+    return createElement(settingsElement);
+}
+
 return function() { return {
     getName: () => "DiscordFreeEmojis",
     getShortName: () => "FreeEmojis",
@@ -192,7 +251,8 @@ return function() { return {
     getAuthor: () => "An0 (Original) & EpicGazel",
 
     start: Start,
-    stop: Stop
+    stop: Stop,
+    getSettingsPanel: GetSettingsPanel
 }};
 
 })();
