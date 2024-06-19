@@ -8,11 +8,10 @@ button[class*='emojiItemDisabled'] {
     outline-offset: -2px; 
     cursor: pointer !important;
 }
-/* Makes the emoji dark background transparent */ 
-.emojiLockIconContainer_ed2f80 {
-    background: rgba(0,0,0,0) !important;
-    scale: 0.01 !important;
-
+/* Makes the dark background transparent */ 
+.emojiLockIconContainer_bcf389 {
+ background: rgba(0,0,0,0) !important;
+ scale: 0.01 !important;
 }
 
 /* Makes the emoji lock icon itself too small to see */
@@ -29,7 +28,7 @@ button[class*='emojiItemDisabled'] {
 }
 
 /* Really big emoji/sticker/gif drawer */
-.positionLayer__9999d {
+.positionLayer_af5dbb {
     height: calc(100vh - 220px);
 }
 
