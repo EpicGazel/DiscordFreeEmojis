@@ -10,7 +10,7 @@ A fork of An00nymushun's original: https://github.com/An00nymushun/DiscordFreeEm
 
 Changes made:
 - (Breaking Bug) emoji.url no longer exists, url is created dynamically based on if emoji is animated gif or still webp
-- (QOL) Url is inserted as a hyperlink on an invisible character (may be visible on mobile or certain fonts)
+- (QOL) Url is inserted as a hyperlink on an invisible character (should be invisible everywhere, thank [@NamelessContributor](https://github.com/NamelessContributor))
 - (QOL) Multiple of the same emoji can be used in the same message (thank [@ArjhanToteck](https://github.com/ArjhanToteck))
 - (Pref) Emojis can be displayed in native size or 48px (open the settings and toggle off "Use native emoji size", thank [@ArjhanToteck](https://github.com/ArjhanToteck))
 
