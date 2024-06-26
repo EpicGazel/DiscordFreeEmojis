@@ -158,7 +158,7 @@ function Start() {
         let emojiUrl = `https://cdn.discordapp.com/emojis/${emoji.id}.${emoji.animated ? "gif" : "webp"}?quality=lossless&index=${index}${pluginSettings.useNativeEmojiSize.value ? "" : "&size=48"}`;
 		parseResult.content = parseResult.content.replace
 			(`<${emoji.animated ? "a" : ""}:${emoji.originalName || emoji.name}:${emoji.id}>`,
-			 `[᲼](${emojiUrl}) `);
+			 `[󠄀](${emojiUrl}) `);
     }
 
     parseHook = function() {
