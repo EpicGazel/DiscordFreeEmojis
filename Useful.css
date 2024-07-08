@@ -8,6 +8,7 @@ button[class*='emojiItemDisabled'] {
     outline-offset: -2px; 
     cursor: pointer !important;
 }
+
 /* Makes the dark background transparent */ 
 .emojiLockIconContainer_bcf389 {
  background: rgba(0,0,0,0) !important;
@@ -17,6 +18,26 @@ button[class*='emojiItemDisabled'] {
 /* Makes the emoji lock icon itself too small to see */
 .emojiLockIcon__37643 {
     width: 0 !important;
+}
+
+/* Hides lock on server icons */
+.categoryItemLockIconContainer_bfabc4 {
+    display: none;
+}
+
+/* Hides the "Unlock every emoji with Nitro - Get Nitro" pop-up */
+.upsellContainer_a3bc57 {
+    display: none;
+}
+
+/* Hides the divider between "Frequently Used" and server emojis */
+.nitroTopDividerContainer_e8f337 {
+    display: none;
+}
+
+/* Makes the pink background behind "locked" emojis transparent. */
+.categorySectionNitroLocked_a3bc57 {
+    background-color: transparent;
 }
 
 
