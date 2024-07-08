@@ -15,3 +15,6 @@ Changes made:
 - (Pref) Emojis can be displayed in native size or 48px (open the settings and toggle off "Use native emoji size", thank [@ArjhanToteck](https://github.com/ArjhanToteck))
 
 I intend to maintain this repo as I use the plugin. I will consider any PRs or issues.
+
+## Extra
+Check out [Useful.css](Useful.css) for some helpful and mostly related CSS rules to improve the look of using emojis. Thank [@Bergbok](https://github.com/Bergbok) for some additions ([PR#10](https://github.com/EpicGazel/DiscordFreeEmojis/pull/10)).
