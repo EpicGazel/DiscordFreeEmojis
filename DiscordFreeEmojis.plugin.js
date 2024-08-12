@@ -1,6 +1,6 @@
 /**
  * @name FreeEmojis
- * @version 1.7.3
+ * @version 1.7.4
  * @description Link emojis if you don't have nitro! Type them out or use the emoji picker!
  * @author An0 (Original) & EpicGazel 
  * @source https://github.com/EpicGazel/DiscordFreeEmojis
@@ -167,8 +167,8 @@ function Start() {
 
         if(result.invalidEmojis.length !== 0) {
             for(let emoji of result.invalidEmojis) {
-                replaceEmoji(result, emoji, emojisSent);
-                emojisSent++;
+                let index = Math.floor(Math.random() * 100000);
+                replaceEmoji(result, emoji, index);
             }
             result.invalidEmojis = [];
         }
