@@ -37,6 +37,71 @@ const FormSwitch = BdApi.Webpack.getByKeys("FormSwitch").FormSwitch;
 
 const BaseColor = "#0cf";
 
+const DOM = BdApi.DOM;
+const css = 
+    `button[class*='emojiItemDisabled'] { 
+        filter: none !important; 
+        outline: dotted 4px rgba(255, 255, 255, 0.46); 
+        outline-offset: -2px; 
+        cursor: pointer !important;
+    }
+
+    /* Makes the dark background transparent */ 
+    .emojiLockIconContainer_bcf389 {
+    background: rgba(0,0,0,0) !important;
+    scale: 0.01 !important;
+    }
+
+    /* Makes the emoji lock icon itself too small to see */
+    .emojiLockIcon__37643 {
+        width: 0 !important;
+    }
+
+    /* Hides lock on server icons */
+    .categoryItemLockIconContainer_bfabc4 {
+        display: none;
+    }
+
+    /* Hides the "Unlock every emoji with Nitro - Get Nitro" pop-up */
+    .upsellContainer_a3bc57 {
+        display: none;
+    }
+
+    /* Hides the divider between "Frequently Used" and server emojis */
+    .nitroTopDividerContainer_e8f337 {
+        display: none;
+    }
+
+    /* Makes the pink background behind "locked" emojis transparent. */
+    .categorySectionNitroLocked_a3bc57 {
+        background-color: transparent;
+    }
+
+
+    /* Other misc rules */
+    /* Make (normal) text emojis bigger */
+    .emoji.jumboable {
+        width:150px;
+        height:150px;
+    }
+
+    /* Really big emoji/sticker/gif drawer */
+    .positionLayer_af5dbb {
+        height: calc(100vh - 220px);
+    }
+
+    /* Hide send gift button */
+    button[aria-label="Send a gift"] {
+        visibility: hidden;
+        display: none;
+    }
+
+    /* Hide unlock nitro bar*/
+    .upsellContainer_ad7baa{
+        display: none
+    }
+    `
+
 var Discord;
 var Utils = {
     Log: (message) => { console.log(`%c[FreeEmojis] %c${message}`, `color:${BaseColor};font-weight:bold`, "") },
@@ -199,6 +264,8 @@ function Start() {
             pluginSettings[key].value = loadedSetting;
         }
     }
+
+    DOM.addStyle('FreeEmojis', css)	
 }
 
 function Stop() {
@@ -207,6 +274,8 @@ function Stop() {
     searchHook = Discord.original_searchWithoutFetchingLatest;
     parseHook = Discord.original_parse;
     getEmojiUnavailableReasonHook = Discord.original_getEmojiUnavailableReason;
+
+    DOM.removeStyle('FreeEmojis')
 }
 
 function GetSettingsPanel() {
