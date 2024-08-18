@@ -13,6 +13,7 @@ Changes made:
 - (QOL) Url is inserted as a hyperlink on an invisible character (should be invisible everywhere, thank [@NamelessContributor](https://github.com/NamelessContributor))
 - (QOL) Multiple of the same emoji can be used in the same message (thank [@ArjhanToteck](https://github.com/ArjhanToteck))
 - (Pref) Emojis can be displayed in native size or 48px (open the settings and toggle off "Use native emoji size", thank [@ArjhanToteck](https://github.com/ArjhanToteck))
+- (QOL) CSS styles to hide nitro emoji ads (and other misc items) (thank [@thc282](https://github.com/thc282) for adding the CSS styles into the code)
 
 I intend to maintain this repo as I use the plugin. I will consider any PRs or issues.
 
