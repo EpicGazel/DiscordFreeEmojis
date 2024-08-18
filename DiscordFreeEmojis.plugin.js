@@ -63,9 +63,9 @@ const css =
     }
 
     /* Hides the "Unlock every emoji with Nitro - Get Nitro" pop-up */
-    .upsellContainer_a3bc57 {
-        display: none;
-    }
+    [class^="upsellContainer_"] {
+    	display: none;
+	}
 
     /* Hides the divider between "Frequently Used" and server emojis */
     .nitroTopDividerContainer_e8f337 {
@@ -94,11 +94,6 @@ const css =
     button[aria-label="Send a gift"] {
         visibility: hidden;
         display: none;
-    }
-
-    /* Hide unlock nitro bar*/
-    .upsellContainer_ad7baa{
-        display: none
     }
     `
 
