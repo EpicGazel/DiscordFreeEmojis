@@ -4,6 +4,8 @@ If you don't have nitro, post the emojis as links!<br>
 
 Install it by downloading the DiscordFreeEmoji.plugin.js file to plugins folder.<br>
 - Windows: `%appdata%\BetterDiscord\plugins`
+- macOS: `~/Library/Application Support/BetterDiscord/plugins`
+- Linux: `~/.config/BetterDiscord/plugins/`
 <br>
 
 A fork of An00nymushun's original: https://github.com/An00nymushun/DiscordFreeEmojis <br>
