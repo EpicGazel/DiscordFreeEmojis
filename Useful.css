@@ -1,3 +1,7 @@
+/* DO NOT USE */
+/* This functionality is included as settings in the plugin.*/
+/* Left as a base for future CSS rules.*/
+
 /* Misc items to add to Custom CSS for a better experience. Pick and choose as you please.*/
 
 /* Clean up emojis darkened, monotone, lock icon */
@@ -10,33 +14,33 @@ button[class*='emojiItemDisabled'] {
 }
 
 /* Makes the dark background transparent */ 
-.emojiLockIconContainer_bcf389 {
- background: rgba(0,0,0,0) !important;
- scale: 0.01 !important;
+[class*="emojiLockIconContainer_"] {
+background: rgba(0,0,0,0) !important;
+scale: 0.01 !important;
 }
 
 /* Makes the emoji lock icon itself too small to see */
-.emojiLockIcon__37643 {
+[class*="emojiLockIcon_"] {
     width: 0 !important;
 }
 
 /* Hides lock on server icons */
-.categoryItemLockIconContainer_bfabc4 {
+[class*="categoryItemLockIconContainer_"] {
     display: none;
 }
 
 /* Hides the "Unlock every emoji with Nitro - Get Nitro" pop-up */
-.upsellContainer_a3bc57 {
+[class*="upsellContainer_"] {
     display: none;
 }
 
 /* Hides the divider between "Frequently Used" and server emojis */
-.nitroTopDividerContainer_e8f337 {
+[class*="categorySectionNitroTopDivider_"] {
     display: none;
 }
 
 /* Makes the pink background behind "locked" emojis transparent. */
-.categorySectionNitroLocked_a3bc57 {
+[class*="categorySectionNitroLocked_"] {
     background-color: transparent;
 }
 
@@ -49,7 +53,7 @@ button[class*='emojiItemDisabled'] {
 }
 
 /* Really big emoji/sticker/gif drawer */
-.positionLayer_af5dbb {
+[class*="positionLayer_"] {
     height: calc(100vh - 220px);
 }
 
