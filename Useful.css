@@ -30,6 +30,11 @@ button[class*='emojiItemDisabled'] {
     display: none;
 }
 
+/* Hides the additional nitro promotion banner/widget that appears when scrolling in the emoji picker */
+.upsellContainer_ad7baa {
+    display: none;
+}
+
 /* Hides the divider between "Frequently Used" and server emojis */
 .nitroTopDividerContainer_e8f337 {
     display: none;
