@@ -17,7 +17,11 @@ Changes made:
 - (Pref) Emojis can be displayed in native size or 48px (open the settings and toggle off "Use native emoji size", thank [@ArjhanToteck](https://github.com/ArjhanToteck))
 - (QOL) CSS styles to hide nitro emoji ads (and other misc items) (thank [@thc282](https://github.com/thc282) for adding the CSS styles into the code)
 
+
 I intend to maintain this repo as I use the plugin. I will consider any PRs or issues.
+
+Miscellaneous Contributors:
+[@DanzoGit](https://github.com/DanzoGit)
 
 ## Extra
 Check out [Useful.css](Useful.css) for some helpful and mostly related CSS rules to improve the look of using emojis. Thank [@Bergbok](https://github.com/Bergbok) for some additions ([PR#10](https://github.com/EpicGazel/DiscordFreeEmojis/pull/10)).
