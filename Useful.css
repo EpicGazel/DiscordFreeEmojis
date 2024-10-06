@@ -34,6 +34,11 @@ scale: 0.01 !important;
     display: none;
 }
 
+/* Hides the additional nitro promotion banner/widget that appears when scrolling in the emoji picker */
+.upsellContainer_ad7baa {
+    display: none;
+}
+
 /* Hides the divider between "Frequently Used" and server emojis */
 [class*="categorySectionNitroTopDivider_"] {
     display: none;
