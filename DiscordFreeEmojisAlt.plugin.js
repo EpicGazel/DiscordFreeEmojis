@@ -1,6 +1,6 @@
 /**
  * @name FreeEmojis
- * @version 1.8.5.2
+ * @version 1.8.5.3
  * @description Link emojis if you don't have nitro! Type them out or use the emoji picker!
  * @author An0 (Original) & EpicGazel 
  * @source https://github.com/EpicGazel/DiscordFreeEmojis
