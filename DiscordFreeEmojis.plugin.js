@@ -1,6 +1,6 @@
 /**
  * @name FreeEmojis
- * @version 1.8.5
+ * @version 1.8.6-hotfix
  * @description Link emojis if you don't have nitro! Type them out or use the emoji picker!
  * @author An0 (Original) & EpicGazel 
  * @source https://github.com/EpicGazel/DiscordFreeEmojis
@@ -33,7 +33,8 @@ var FreeEmojis = (() => {
     'use strict';
     
     const { createElement, useState } = BdApi.React;
-    const FormSwitch = BdApi.Webpack.getByKeys("FormSwitch").FormSwitch;
+    //const FormSwitch = BdApi.Webpack.getByKeys("FormSwitch").FormSwitch;
+    const FormSwitch = null;
     
     const BaseColor = "#0cf";
     
