@@ -33,8 +33,19 @@ var FreeEmojis = (() => {
     'use strict';
     
     const { createElement, useState } = BdApi.React;
-    //const FormSwitch = BdApi.Webpack.getByKeys("FormSwitch").FormSwitch;
-    const FormSwitch = null;
+    const CustomSwitch = ({ name, note, value, onChange }) => {
+    return BdApi.React.createElement("div", { style: { padding: "10px" } }, 
+        BdApi.React.createElement("label", null, 
+            BdApi.React.createElement("input", {
+                type: "checkbox",
+                checked: value,
+                onChange: (e) => onChange(e.target.checked)
+            }),
+            ` ${name}`
+        ),
+        BdApi.React.createElement("p", { style: { fontSize: "12px", color: "gray" } }, note)
+        );
+    };
     
     const BaseColor = "#0cf";
     
@@ -159,19 +170,19 @@ var FreeEmojis = (() => {
             name: "Use native emoji size",
             note: "Uploads emoji as their native size. Always scales down to 48px, the Discord emoji size, otherwise.",
             value: true,
-            type: FormSwitch
+            type: CustomSwitch
         },
         hideNitroCss: {
             name: "Hide Nitro CSS",
             note: "Removes Nitro adds using CSS.",
             value: true,
-            type: FormSwitch
+            type: CustomSwitch
         },
         enableMiscellaneousCSS:{
             name: "Enable Miscellaneous CSS properties",
             note: "Other CSS styles that you may or may not like. Bigger emojis, bigger emoji drawer, hide gift button...",
             value: false,
-            type: FormSwitch
+            type: CustomSwitch
         }
     };
     
@@ -319,10 +330,10 @@ var FreeEmojis = (() => {
                 const { type } = pluginSettings[key];
                 let outputElement;
     
-                if (type == FormSwitch) {
+                if (type == CustomSwitch) {
                     let { name, note, value } = pluginSettings[key];
     
-                    outputElement = createElement(FormSwitch, {
+                    outputElement = createElement(CustomSwitch, {
                         name: name,
                         children: name,
                         note: note,
@@ -342,7 +353,7 @@ var FreeEmojis = (() => {
         getName: () => "DiscordFreeEmojis",
         getShortName: () => "FreeEmojis",
         getDescription: () => "Link emojis if you don't have nitro! Type them out or use the emoji picker!",
-        getVersion: () => "1.8.0",
+        getVersion: () => "1.8.6-hotfix",
         getAuthor: () => "An0 (Original) & EpicGazel",
     
         start: Start,
