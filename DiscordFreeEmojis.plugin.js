@@ -33,19 +33,7 @@ var FreeEmojis = (() => {
     'use strict';
     
     const { createElement, useState } = BdApi.React;
-    const CustomSwitch = ({ name, note, value, onChange }) => {
-    return BdApi.React.createElement("div", { style: { padding: "10px" } }, 
-        BdApi.React.createElement("label", null, 
-            BdApi.React.createElement("input", {
-                type: "checkbox",
-                checked: value,
-                onChange: (e) => onChange(e.target.checked)
-            }),
-            ` ${name}`
-        ),
-        BdApi.React.createElement("p", { style: { fontSize: "12px", color: "gray" } }, note)
-        );
-    };
+    const { SwitchInput } = BdApi.Components;
     
     const BaseColor = "#0cf";
     
@@ -169,20 +157,17 @@ var FreeEmojis = (() => {
         useNativeEmojiSize: {
             name: "Use native emoji size",
             note: "Uploads emoji as their native size. Always scales down to 48px, the Discord emoji size, otherwise.",
-            value: true,
-            type: CustomSwitch
+            value: true
         },
         hideNitroCss: {
             name: "Hide Nitro CSS",
             note: "Removes Nitro adds using CSS.",
-            value: true,
-            type: CustomSwitch
+            value: true
         },
         enableMiscellaneousCSS:{
             name: "Enable Miscellaneous CSS properties",
             note: "Other CSS styles that you may or may not like. Bigger emojis, bigger emoji drawer, hide gift button...",
-            value: false,
-            type: CustomSwitch
+            value: false
         }
     };
     
@@ -304,7 +289,7 @@ var FreeEmojis = (() => {
     
     function GetSettingsPanel() {
         const settingsElement = () => {
-    
+
             const [usePluginSettings, setPluginSettings] = useState(pluginSettings);
             const handleChange = (key, value) => {
                 let updatedSettings = { ...usePluginSettings };
@@ -323,29 +308,33 @@ var FreeEmojis = (() => {
                 // Reload CSS
                 DOM.removeStyle('FreeEmojis')
                 DOM.addStyle('FreeEmojis', css)
-
             }
-    
+
             return Object.keys(pluginSettings).map((key) => {
-                const { type } = pluginSettings[key];
-                let outputElement;
-    
-                if (type == CustomSwitch) {
-                    let { name, note, value } = pluginSettings[key];
-    
-                    outputElement = createElement(CustomSwitch, {
-                        name: name,
-                        children: name,
-                        note: note,
+                let { name, note, value } = pluginSettings[key];
+                return createElement(
+                    "div",
+                    {
+                        style: {
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            padding: "16px 0",
+                            borderBottom: "1px solid rgba(255,255,255,0.04)"
+                        }
+                    },
+                    createElement("div", { style: { flex: 1, minWidth: 0 } },
+                        createElement("div", { style: { fontWeight: 500, fontSize: 16, color: "#fff" } }, name),
+                        note && createElement("div", { style: { fontSize: 13, color: "#b9bbbe", marginTop: 4, lineHeight: "1.4" } }, note)
+                    ),
+                    createElement(SwitchInput, {
                         value: value,
                         onChange: (v) => handleChange(key, v)
-                    });
-                }
-    
-                return outputElement;
+                    })
+                );
             });
         };
-    
+
         return createElement(settingsElement);
     }
     
@@ -353,7 +342,7 @@ var FreeEmojis = (() => {
         getName: () => "DiscordFreeEmojis",
         getShortName: () => "FreeEmojis",
         getDescription: () => "Link emojis if you don't have nitro! Type them out or use the emoji picker!",
-        getVersion: () => "1.8.6-hotfix",
+        getVersion: () => "1.8.7",
         getAuthor: () => "An0 (Original) & EpicGazel",
     
         start: Start,
@@ -366,4 +355,4 @@ var FreeEmojis = (() => {
     module.exports = FreeEmojis;
     
     /*@end @*/
-    
+
