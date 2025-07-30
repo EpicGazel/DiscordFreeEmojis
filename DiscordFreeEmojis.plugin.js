@@ -1,6 +1,6 @@
 /**
  * @name FreeEmojis
- * @version 1.10.0
+ * @version 1.10.1
  * @description Link emojis if you don't have nitro! Type them out or use the emoji picker!
  * @author An0 (Original) & EpicGazel 
  * @source https://github.com/EpicGazel/DiscordFreeEmojis
@@ -87,7 +87,7 @@ var FreeEmojis = (() => {
                 }
     
                 /* Hide send gift button */
-                button[aria-label="Send a gift"] {
+                div[aria-label="Send a gift"] {
                     visibility: hidden;
                     display: none;
                 }`;
