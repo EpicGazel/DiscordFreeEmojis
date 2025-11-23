@@ -108,6 +108,11 @@ var FreeEmojis = (() => {
             name: "Enable Miscellaneous CSS properties",
             note: "Other CSS styles that you may or may not like. Bigger emojis, bigger emoji drawer, hide gift button...",
             value: false
+        },
+        embedEmojiLinks: {
+        name: "Embed emoji link",
+        note: "If enabled, emojis are embedded as clickable markdown links. If disabled, send the plain URL instead.",
+        value: false
         }
     };
         
@@ -149,10 +154,14 @@ var FreeEmojis = (() => {
     
         function replaceEmoji(parseResult, emoji, index) {
             let emojiUrl = `https://cdn.discordapp.com/emojis/${emoji.id}.${emoji.animated ? "gif" : "webp"}?quality=lossless&${index}${pluginSettings.useNativeEmojiSize.value ? "" : "&size=48"}`;
-            parseResult.content = parseResult.content.replace
-                (`<${emoji.animated ? "a" : ""}:${emoji.originalName || emoji.name}:${emoji.id}>`,
-                 `[󠄀](${emojiUrl}) `);
-        }
+            let replacement = pluginSettings.embedEmojiLinks.value
+            ? `[󠄀](${emojiUrl}) `
+            : `${emojiUrl}`;
+
+            parseResult.content = parseResult.content.replace(
+                `<${emoji.animated ? "a" : ""}:${emoji.originalName || emoji.name}:${emoji.id}>`, replacement);
+            }
+
     
         for (let key in pluginSettings) {
             const loadedSetting = BdApi.Data.load("FreeEmojis", key);
