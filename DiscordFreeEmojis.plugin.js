@@ -1,6 +1,6 @@
 /**
  * @name FreeEmojis
- * @version 1.10.1
+ * @version 1.11.0
  * @description Link emojis if you don't have nitro! Type them out or use the emoji picker!
  * @author An0 (Original) & EpicGazel 
  * @source https://github.com/EpicGazel/DiscordFreeEmojis
@@ -109,10 +109,10 @@ var FreeEmojis = (() => {
             note: "Other CSS styles that you may or may not like. Bigger emojis, bigger emoji drawer, hide gift button...",
             value: false
         },
-        embedEmojiLinks: {
-        name: "Embed emoji link",
-        note: "If enabled, emojis are embedded as clickable markdown links. If disabled, send the plain URL instead.",
-        value: false
+        invisibleEmojiLink: {
+        name: "Invisible Emoji Link",
+        note: "If enabled, emojis are embedded as an invisible markdown link. If disabled, they are sent as a plain URL instead.",
+        value: true
         }
     };
         
@@ -153,13 +153,48 @@ var FreeEmojis = (() => {
         Patcher.instead("FreeEmojis", emojiPermissionsModule, "getEmojiUnavailableReason", () => null);
     
         function replaceEmoji(parseResult, emoji, index) {
-            let emojiUrl = `https://cdn.discordapp.com/emojis/${emoji.id}.${emoji.animated ? "gif" : "webp"}?quality=lossless&${index}${pluginSettings.useNativeEmojiSize.value ? "" : "&size=48"}`;
-            let replacement = pluginSettings.embedEmojiLinks.value
-            ? `[󠄀](${emojiUrl}) `
-            : `${emojiUrl}`;
+            // Build Embed URL
+            var emojiUrl = `https://cdn.discordapp.com/emojis/${emoji.id}.`;
 
-            parseResult.content = parseResult.content.replace(
-                `<${emoji.animated ? "a" : ""}:${emoji.originalName || emoji.name}:${emoji.id}>`, replacement);
+            // Animated emojis are gifs, others are webps
+            if (emoji.animated) 
+                emojiUrl += "gif";
+            else
+                emojiUrl += "webp";
+
+            // Index allows for duplicate emojis (multiple of the same one), otherwise there would only be one embed
+            emojiUrl += `?quality=lossless&${index}`;
+
+            // If not native (full size), will use the discord default size (48px)
+            if (!pluginSettings.useNativeEmojiSize.value) {
+                emojiUrl += "&size=48";
+            }
+
+
+            // Building string to in message
+            var replaceString = "<"
+
+            if (emoji.animated)
+                replaceString += "a";
+
+            replaceString += ":";
+
+            if (emoji.originalName)
+                replaceString += emoji.originalName;
+            else
+                replaceString += emoji.name;
+
+            replaceString += ":" + emoji.id + ">";
+            
+            var replacement = ""
+
+            //Make emoji invisible via markdown link and invisible character
+            if (pluginSettings.invisibleEmojiLink.value)
+                replacement = `[󠄀](${emojiUrl}) `;
+            else
+                replacement = emojiUrl;
+
+            parseResult.content = parseResult.content.replace(replaceString, replacement);
             }
 
     
