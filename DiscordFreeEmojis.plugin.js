@@ -1,6 +1,6 @@
 /**
  * @name FreeEmojis
- * @version 1.11.0
+ * @version 1.11.1
  * @description Link emojis if you don't have nitro! Type them out or use the emoji picker!
  * @author An0 (Original) & EpicGazel 
  * @source https://github.com/EpicGazel/DiscordFreeEmojis
@@ -60,9 +60,11 @@ var FreeEmojis = (() => {
             }
     
             /* Hides the "Unlock every emoji with Nitro - Get Nitro" pop-up */
+            /* Disabled for now, breaks server settings "Onboarding" page.
             [class*="upsellContainer_"] {
                 display: none;
             }
+            */
     
             /* Hides the divider between "Frequently Used" and server emojis */
             [class*="categorySectionNitroTopDivider_"] {
