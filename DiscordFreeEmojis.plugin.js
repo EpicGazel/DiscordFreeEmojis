@@ -1,6 +1,6 @@
 /**
  * @name FreeEmojis
- * @version 1.11.1
+ * @version 1.11.2
  * @description Link emojis if you don't have nitro! Type them out or use the emoji picker!
  * @author An0 (Original) & EpicGazel 
  * @source https://github.com/EpicGazel/DiscordFreeEmojis
@@ -43,19 +43,13 @@ var FreeEmojis = (() => {
                 cursor: pointer !important;
             }
     
-            /* Makes the dark background transparent */ 
-            [class*="emojiLockIconContainer_"] {
-            background: rgba(0,0,0,0) !important;
-            scale: 0.01 !important;
-            }
-    
             /* Makes the emoji lock icon itself too small to see */
-            [class*="emojiLockIcon_"] {
+            [class*="emojiLockIcon"] {
                 width: 0 !important;
             }
     
             /* Hides lock on server icons */
-            [class*="categoryItemLockIconContainer_"] {
+            [class*="categoryItemLockIconContainer"] {
                 display: none;
             }
     
@@ -67,13 +61,13 @@ var FreeEmojis = (() => {
             */
     
             /* Hides the divider between "Frequently Used" and server emojis */
-            [class*="categorySectionNitroTopDivider_"] {
+            [class*="nitroTopDividerContainer"] {
                 display: none;
             }
     
             /* Makes the pink background behind "locked" emojis transparent. */
-            [class*="categorySectionNitroLocked_"] {
-                background-color: transparent;
+            [class*="categorySectionNitroLocked"] {
+                background: transparent !important;
             }
             `;
     const miscellaneousCSS = `/* Other misc rules */
@@ -84,7 +78,7 @@ var FreeEmojis = (() => {
                 }
     
                 /* Really big emoji/sticker/gif drawer */
-                [class*="positionLayer_"] { /*.positionLayer_af5dbb*/
+                [class*="expressionPickerPositionLayer"] {
                     height: calc(100vh - 220px);
                 }
     
