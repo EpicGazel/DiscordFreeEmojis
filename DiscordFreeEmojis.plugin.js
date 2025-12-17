@@ -54,11 +54,12 @@ var FreeEmojis = (() => {
             }
     
             /* Hides the "Unlock every emoji with Nitro - Get Nitro" pop-up */
-            /* Disabled for now, breaks server settings "Onboarding" page.
-            [class*="upsellContainer_"] {
+            /* Target only emoji picker upsell, not onboarding page */
+            [class*="upsellContainer"][class*="Floating"],
+            [class*="upsellContainer"] [class*="upsellText"],
+            [class*="upsellContainer"]:has([class*="upsellText"]) {
                 display: none;
             }
-            */
     
             /* Hides the divider between "Frequently Used" and server emojis */
             [class*="nitroTopDividerContainer"] {
