@@ -52,12 +52,9 @@ var FreeEmojis = (() => {
             [class*="categoryItemLockIconContainer"] {
                 display: none;
             }
-    
+            
             /* Hides the "Unlock every emoji with Nitro - Get Nitro" pop-up */
-            /* Target only emoji picker upsell, not onboarding page */
-            [class*="upsellContainer"][class*="Floating"],
-            [class*="upsellContainer"] [class*="upsellText"],
-            [class*="upsellContainer"]:has([class*="upsellText"]) {
+            div[class*="emojiPicker"] div[class*="upsellContainer"][class*="Floating"] {
                 display: none;
             }
     
