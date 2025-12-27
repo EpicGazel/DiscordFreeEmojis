@@ -186,7 +186,7 @@ var FreeEmojis = (() => {
 
             //Make emoji invisible via markdown link and invisible character
             if (pluginSettings.invisibleEmojiLink.value)
-                replacement = `[󠄀](${emojiUrl}) `;
+                replacement = `[󠄀](${emojiUrl})`;
             else
                 replacement = emojiUrl;
 
