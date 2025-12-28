@@ -92,8 +92,14 @@ var FreeEmojis = (() => {
     var pluginSettings = {
         useNativeEmojiSize: {
             name: "Use native emoji size",
-            note: "Uploads emoji as their native size. Always scales down to 48px, the Discord emoji size, otherwise.",
+            note: "Uploads emoji as their native size. Always scales down to selected size, otherwise.",
             value: true
+        },
+        emojiSize: {
+            name: "Emoji size",
+            note: "Select emoji size when not using native size",
+            value: 48,
+            options: [16, 20, 22, 24, 28, 32, 40, 44, 48, 56, 60, 64, 80, 96, 100, 128]
         },
         hideNitroCss: {
             name: "Hide Nitro CSS",
@@ -161,9 +167,9 @@ var FreeEmojis = (() => {
             // Index allows for duplicate emojis (multiple of the same one), otherwise there would only be one embed
             emojiUrl += `?quality=lossless&${index}`;
 
-            // If not native (full size), will use the discord default size (48px)
+            // If not native (full size), will use the selected emoji size
             if (!pluginSettings.useNativeEmojiSize.value) {
-                emojiUrl += "&size=48";
+                emojiUrl += "&size=" + pluginSettings.emojiSize.value;
             }
 
 
@@ -243,7 +249,42 @@ var FreeEmojis = (() => {
             }
 
             return Object.keys(pluginSettings).map((key) => {
-                let { name, note, value } = pluginSettings[key];
+                let { name, note, value, options } = pluginSettings[key];
+                
+                if (key === 'emojiSize') {
+                    return createElement(
+                        "div",
+                        {
+                            style: {
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                                padding: "16px 0",
+                                borderBottom: "1px solid rgba(255,255,255,0.04)"
+                            }
+                        },
+                        createElement("div", { style: { flex: 1, minWidth: 0 } },
+                            createElement("div", { style: { fontWeight: 500, fontSize: 16, color: "#fff" } }, name),
+                            note && createElement("div", { style: { fontSize: 13, color: "#b9bbbe", marginTop: 4, lineHeight: "1.4" } }, note)
+                        ),
+                        createElement("select", {
+                            value: value,
+                            onChange: (e) => handleChange(key, parseInt(e.target.value)),
+                            style: {
+                                padding: "8px 12px",
+                                backgroundColor: "#2f3136",
+                                color: "#fff",
+                                border: "1px solid #202225",
+                                borderRadius: "4px",
+                                cursor: "pointer",
+                                fontSize: "14px"
+                            }
+                        },
+                            options.map(size => createElement("option", { value: size, key: size }, size))
+                        )
+                    );
+                }
+                
                 return createElement(
                     "div",
                     {
