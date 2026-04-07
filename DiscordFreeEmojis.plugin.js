@@ -1,6 +1,6 @@
 /**
  * @name FreeEmojis
- * @version 1.11.2
+ * @version 1.11.3
  * @description Link emojis if you don't have nitro! Type them out or use the emoji picker!
  * @author An0 (Original) & EpicGazel 
  * @source https://github.com/EpicGazel/DiscordFreeEmojis
@@ -150,13 +150,7 @@ var FreeEmojis = (() => {
     
         function replaceEmoji(parseResult, emoji, index) {
             // Build Embed URL
-            var emojiUrl = `https://cdn.discordapp.com/emojis/${emoji.id}.`;
-
-            // Animated emojis are gifs, others are webps
-            if (emoji.animated) 
-                emojiUrl += "gif";
-            else
-                emojiUrl += "webp";
+            var emojiUrl = `https://cdn.discordapp.com/emojis/${emoji.id}.webp`;
 
             // Index allows for duplicate emojis (multiple of the same one), otherwise there would only be one embed
             emojiUrl += `?quality=lossless&${index}`;
@@ -165,6 +159,9 @@ var FreeEmojis = (() => {
             if (!pluginSettings.useNativeEmojiSize.value) {
                 emojiUrl += "&size=48";
             }
+
+            if (emoji.animated)
+                emojiUrl += "&animated=true";
 
 
             // Building string to in message
